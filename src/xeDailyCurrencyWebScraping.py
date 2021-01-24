@@ -20,12 +20,6 @@ driver.implicitly_wait(40)
 driver.get(currencyConvURL)
 currencyValClass=driver.find_element_by_class_name('converterresult-toAmount')
 print(currencyValClass.text)
-server = 'IE4LDTJ1M6N62.global.ds.honeywell.com' 
-database = 'WebScrapping' 
-username = 'sa' 
-password = 'sseteam@2020' 
-conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-cursor = conn.cursor()
-cursor.execute("INSERT INTO WebScrapping.dbo.xe_ExchangeRates (ExchangeDate,CurrencyFrom,CurrencyTO,CurrencyValue) VALUES ('"+ str(date.today()) +"','CNY','USD','"+currencyValClass.text+"')")
-cursor.commit()                
+
+# Save to DB
 driver.quit()
